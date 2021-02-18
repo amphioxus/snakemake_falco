@@ -5,6 +5,30 @@ A Snakemake pipeline to run **Falco** (https://github.com/smithlabcode/falco) on
 
 de Sena Brandine G and Smith AD. *Falco: high-speed FastQC emulation for quality control of sequencing data.* F1000Research 2021, 8:1874 (https://doi.org/10.12688/f1000research.21142.2)
 
+## Installation
+
+To install snakemake, first install mamba to make it faster.
+
+```bash
+ conda install -c conda-forge mamba
+ # Once mamba is install, do a full install of 
+ # snakemake with:
+ mamba create -c conda-forge -c bioconda -n snakemake snakemake
+ 
+ # Activate the new conda environment:
+ conda activate snakemake
+ 
+ # Get snakemake version:
+ snakemake -v
+```
+
+Falco can also be installed with conda / mamba:
+
+
+```bash
+mamba install -c bioconda falco
+```
+
 
 
 ## Workflow overview
