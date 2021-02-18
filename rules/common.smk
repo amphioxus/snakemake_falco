@@ -20,15 +20,18 @@ def create_symlinks_to_data(samples, smkdata='data/reads'):
     if not os.path.isdir(smkdata):
         os.makedirs(smkdata)
     # create symlinked folders to actual data in smkdata directory
+    print('Trying to create symlinks to original data locations:')
+    print('{} --> {}'.format( 'Link name', 'Target (abs. path to data folder)' ))
+    print('')
     for s in samples.index:
         linkname = os.path.join(smkdata, s)
-        target = samples.loc[s, 'basepath']
-        
+        target = samples.loc[s, 'basepath']        
         print('{} --> {}'.format( linkname, target ))
         try:
             os.symlink(target, linkname )
         except:
-            print('Symlink might already exists.')
+            print('Symlink not created. It might already exists.')
+        print('')
 
 
 # Prepare sample names and paths for snakemake run
