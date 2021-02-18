@@ -1,0 +1,15 @@
+# Define the file name that lists samples
+samples: samples.csv
+
+# From Falco help output:
+  # -T, --skip-text           Skip generating text file (Default = false)
+  # -H, --skip-html           Skip generating HTML file (Default = false)
+  # -S, --skip-short-summary  Skip short summary(Default = false)
+  # -q, --quiet               print more run info
+  # -d, --dir                 directory in which to create temp files
+  # -R, --reverse-complement  The input is a reverse-complement. All
+  #                           modules will be tested by swapping A/T and
+  #                           C/G
+falco:
+    args: "--skip-short-summary --skip-text"
+
