@@ -75,6 +75,8 @@ The samples.csv file has a header, and then a row for each sample. Lines startin
 
 # Run snakemake
 
+```cd``` into the *snakemake_falco* directory. The *samples.csv* file with the relevant file paths has to be in this folder too. 
+
 To test out the script, using 8 threads:
 
 ```bash
@@ -104,9 +106,9 @@ A folder named "*qcreports*" gets created in each original sample data folder. W
 
 # Copy to web server
 
-After running the snakemake pipeline, reports are contained with each sample folder. They can be looked at by copying the html files to a local computer for viewing in a web browser.
+After running the snakemake pipeline, reports are contained with each sample's data folder. They can be looked at by copying the html files to a local computer for viewing in a web browser.
 
-**TODO:** write a convenicence script that bulk-copies the html files of one library folder to a sub-folder within the  /var/www/html directory, which is accessible by the Apache2 server.
+**TODO:** write a convenicence script that bulk-copies the html files of one library folder to a sub-folder within the  */var/www/html* directory, which is accessible by the Apache2 server. 
 
 
 
@@ -117,6 +119,10 @@ After running the snakemake pipeline, reports are contained with each sample fol
 Can easily be done manually by removing them within the *data/reads* directory, for example by issuing:
 
 ```bash
+cd data/reads
+find . -type l
+
+# if it looks good, use -delete to remove symlinks
 find . -type l -delete
 ```
 
