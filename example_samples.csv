@@ -1,0 +1,5 @@
+sample,r1,r2
+SAMPLE_ID_1,/full/path/to/SAMPLE_ID_1_R1.fastq.gz,/full/path/to/SAMPLE_ID_1_R2.fastq.gz
+SAMPLE_ID_2,/full/path/to/SAMPLE_ID_2_R1.fastq.gz,/full/path/to/SAMPLE_ID_2_R2.fastq.gz
+#SAMPLE_ID_3,/full/path/to/SAMPLE_ID_3_R1.fastq.gz,/full/path/to/SAMPLE_ID_3_R2.fastq.gz
+SAMPLE_ID_4,/full/path/to/SAMPLE_ID_4_R1.fastq.gz,/full/path/to/SAMPLE_ID_4_R2.fastq.gz
