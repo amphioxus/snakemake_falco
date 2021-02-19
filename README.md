@@ -31,7 +31,7 @@ mamba install -c bioconda falco
 
 
 
-## Workflow overview
+# Workflow overview
 
 Our samples are organized in folders. After being downloaded from the sequencing center, all *fastq.gz* files are in one subfolder for that particular run (the "library" folder, see Figure 1A).  Applying the `create_sample_subdirs.py` script leads to the correct file hierarchy, as shown in Figure 1B.
 
@@ -69,7 +69,7 @@ Copy the sample.csv file into the *snakemake_falco* folder.
 
 
 
-## Run snakemake
+# Run snakemake
 
 To test out the script, using 8 threads:
 
@@ -95,4 +95,20 @@ A folder named "*qcreports*" gets created in each original sample data folder. W
 
 * {sample}_fastqc_report_R1.html_ for the forward reads
 *  *{sample}_fastqc_report_R2.html* for the reverse complement reads.
+
+
+
+# Copy to web server
+
+After running the snakemake pipeline, reports are contained with each sample folder. They can be looked at by copying the html files to a local computer for viewing in a web browser.
+
+**TODO:** write a convenicence script that bulk-copies the html files to a sub-folder within the  /var/www/html directory, which is accessible by the Apache2 server.
+
+
+
+# Cleanup
+
+## Delete symlinks
+
+Can easily be done manually by removing them within the *data/reads* directory.
 
