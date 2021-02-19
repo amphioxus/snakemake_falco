@@ -33,21 +33,23 @@ mamba install -c bioconda falco
 
 # Workflow overview
 
-Our samples are organized in folders. After being downloaded from the sequencing center, all *fastq.gz* files are in one subfolder for that particular run (the "library" folder, see Figure 1A).  Applying the `create_sample_subdirs.py` script leads to the correct file hierarchy, as shown in Figure 1B.
-
-**This snakemake pipeline assumes a file hierarchy as shown in Figure 1B.**
+Our samples are organized in folders. After being downloaded from the sequencing center, all *fastq.gz* files are in one subfolder for that particular run (the "library" folder, "sampletest" in Figure 1A).  Applying the `create_sample_subdirs.py` script leads to the correct file hierarchy, as shown in Figure 1B.
 
 
 
 ![sampleFolderStructure](imgs/sampleFolderStructure.jpg)
 
-**Figure 1:** File structure of our read libraries. **(A)** After initial download. **(B)** After applying the `create_sample_subdirs.py` script, samples are within their respective sub-folders.
+**Figure 1:** Illustration of the file hierarchy structure of our read libraries. **(A)** After initial download all files are in the base directory of that particular "library". **(B)** After applying the `create_sample_subdirs.py` script, samples are within their respective sub-folders.
+
+
+
+**NOTE: This snakemake pipeline assumes a file hierarchy as shown in Figure 1B.**
 
 
 
 ## Preparation
 
-The snakemake workflow runs Falco on all the samples listed in a file called  "samples.csv". (This file name can be specified in the config.yaml)
+The snakemake workflow runs Falco on all the samples listed in a file called  "samples.csv". (The file name can be specified in the config.yaml)
 
 For our folder organization, this csv file can be created by doing the following:
 
@@ -65,7 +67,9 @@ python $SCRIPTDIR/make_sample_csv.py samplelist.txt
 
 
 
-Copy the sample.csv file into the *snakemake_falco* folder.
+Copy the sample.csv file into the *snakemake_falco* folder, so it's in the same location as the Snakemake file.
+
+The samples.csv file has a header, and then a row for each sample. Lines starting with "#" will be ignored. Each sample row has three entries: "sample id", "full path to R1", and "full path to R2". Look at "example_samples.csv" as an example. 
 
 
 
@@ -77,7 +81,7 @@ To test out the script, using 8 threads:
 snakemake -j8 -p -n
 ```
 
-The workflow creates symlinks to the original data locations within the *data/reads* sub-folder of *snakemake_falco*. This was easier to set up than trying to deal with various different base paths in the snakemake script. This way, all snakemake output goes to *data/reads/{sample/qcreports}*
+The workflow creates symlinks to the original data locations within the *data/reads* sub-folder of *snakemake_falco*. This was easier to set up than trying to deal with various different base paths in the snakemake script. This way, all snakemake output goes to *data/reads/{sample}/qcreports*, which means it actually goes to the sym-linked location.
 
 
 
@@ -102,7 +106,7 @@ A folder named "*qcreports*" gets created in each original sample data folder. W
 
 After running the snakemake pipeline, reports are contained with each sample folder. They can be looked at by copying the html files to a local computer for viewing in a web browser.
 
-**TODO:** write a convenicence script that bulk-copies the html files to a sub-folder within the  /var/www/html directory, which is accessible by the Apache2 server.
+**TODO:** write a convenicence script that bulk-copies the html files of one library folder to a sub-folder within the  /var/www/html directory, which is accessible by the Apache2 server.
 
 
 
@@ -110,7 +114,7 @@ After running the snakemake pipeline, reports are contained with each sample fol
 
 ## Delete symlinks
 
-Can easily be done manually by removing them within the *data/reads* directory:
+Can easily be done manually by removing them within the *data/reads* directory, for example by issuing:
 
 ```bash
 find . -type l -delete
