@@ -110,5 +110,11 @@ After running the snakemake pipeline, reports are contained with each sample fol
 
 ## Delete symlinks
 
-Can easily be done manually by removing them within the *data/reads* directory.
+Can easily be done manually by removing them within the *data/reads* directory:
+
+```bash
+find . -type l -delete
+```
+
+
 
