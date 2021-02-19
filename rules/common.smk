@@ -1,6 +1,6 @@
 import pandas as pd
-import time, datetime
-from snakemake.utils import validate
+# import time, datetime
+# from snakemake.utils import validate
 from snakemake.utils import min_version
 
 min_version("5.18.0")
@@ -68,6 +68,6 @@ def get_fastq(wildcards, path_prefix='data/reads'):
         
     return { "r1": os.path.join( path_prefix, sample_id, os.path.split(fastqs.r1)[1]), 
              "r2": os.path.join( path_prefix, sample_id, os.path.split(fastqs.r2)[1])
-                }
+            }
                 
                 
