@@ -108,7 +108,7 @@ A folder named "*qcreports*" gets created in each original sample data folder. W
 
 After running the snakemake pipeline, reports are contained with each sample's data folder. They can be looked at by copying the html files to a local computer for viewing in a web browser.
 
-**TODO:** write a convenicence script that bulk-copies the html files of one library folder to a sub-folder within the  */var/www/html* directory, which is accessible by the Apache2 server. 
+**TODO:** write a convenicence script that bulk-copies the html files of all the samples within one library folder to a sub-folder within the  */var/www/html/qc_reports* directory, which is then accessible by the Apache2 server. 
 
 
 
